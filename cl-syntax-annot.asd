@@ -1,13 +1,13 @@
 (in-package :cl-user)
-(defpackage cl-syntax-clsql-asd
+(defpackage cl-syntax-annot-asd
   (:use :cl :asdf))
-(in-package :cl-syntax-clsql-asd)
+(in-package :cl-syntax-annot-asd)
 
-(defsystem cl-syntax-clsql
+(defsystem cl-syntax-annot
   :version "0.1"
   :author "Tomohiro Matsuyama"
   :license "LLGPL"
   :depends-on (:cl-syntax
-               :clsql)
+               :cl-annot)
   :components ((:module "contrib"
-                :components ((:file "clsql")))))
+                :components ((:file "annot")))))
