@@ -49,5 +49,5 @@
                         collect `(list ,@option)))))
     `(progn
        (when (boundp ',name)
-         (setf ',name ,syntax))
+         (setf ,name ,syntax))
        (defvar ,name ,syntax))))
