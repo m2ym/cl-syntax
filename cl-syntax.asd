@@ -8,4 +8,5 @@
   :author "Tomohiro Matsuyama"
   :license "LLGPL"
   :depends-on (:alexandria)
-  :components ((:file "syntax")))
+  :components ((:module "src"
+                :components ((:file "syntax")))))
