@@ -48,6 +48,7 @@
          `(list ,@(loop for option in options
                         collect `(list ,@option)))))
     `(progn
-       (when (boundp ',name)
-         (setf ,name ,syntax))
-       (defvar ,name ,syntax))))
+       (defvar ,name)
+       (setf ,name ,syntax)
+       ;; TODO cl-annot
+       (defvar ,name))))
