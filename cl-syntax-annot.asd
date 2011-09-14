@@ -9,4 +9,4 @@
   :author "Tomohiro Matsuyama"
   :license "LLGPL"
   :depends-on (:cl-syntax :cl-annot)
-  :components ((:file "contrib/anot")))
+  :components ((:file "contrib/annot")))
