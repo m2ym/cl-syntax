@@ -1,10 +1,5 @@
-(defpackage cl-syntax-markup
-  (:nicknames :syntax-markup)
-  (:use :cl)
-  (:import-from :syntax
-                :defsyntax)
-  (:export :markup-syntax))
-(in-package cl-syntax-markup)
+(in-package :cl-user)
 
-(defsyntax markup-syntax
-  (:dispatch-macro-character #\# #\M #'cl-markup::markup-reader))
+(syntax:define-package-syntax :cl-markup
+  (:merge :standard)
+  (:dispatch-macro-char #\# #\M #'cl-markup::markup-reader))

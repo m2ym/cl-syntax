@@ -1,10 +1,5 @@
-(defpackage cl-syntax-annot
-  (:nicknames :syntax-annot)
-  (:use :cl)
-  (:import-from :syntax
-                :defsyntax)
-  (:export :annot-syntax))
-(in-package cl-syntax-annot)
+(in-package :cl-user)
 
-(defsyntax annot-syntax
-  (:macro-character #\@ #'cl-annot.syntax:annotation-syntax-reader))
+(syntax:define-package-syntax :cl-annot
+  (:merge :standard)
+  (:macro-char #\@ #'cl-annot.syntax:annotation-syntax-reader))

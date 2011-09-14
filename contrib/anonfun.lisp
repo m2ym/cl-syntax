@@ -1,10 +1,5 @@
-(defpackage cl-syntax-anonfun
-  (:nicknames :syntax-anonfun)
-  (:use :cl)
-  (:import-from :syntax
-                :defsyntax)
-  (:export :anonfun-syntax))
-(in-package cl-syntax-anonfun)
+(in-package :cl-user)
 
-(defsyntax anonfun-syntax
-  (:dispatch-macro-character #\# #\% #'cl-anonfun::fn-reader))
+(syntax:define-package-syntax :cl-anonfun
+  (:merge :standard)
+  (:dispatch-macro-char #\# #\% #'cl-anonfun::fn-reader))

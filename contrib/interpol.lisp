@@ -1,10 +1,5 @@
-(defpackage cl-syntax-interpol
-  (:nicknames :syntax-interpol)
-  (:use :cl)
-  (:import-from :syntax
-                :defsyntax)
-  (:export :interpol-syntax))
-(in-package cl-syntax-interpol)
+(in-package :cl-user)
 
-(defsyntax interpol-syntax
-  (:dispatch-macro-character #\# #\? #'cl-interpol::interpol-reader))
+(syntax:define-package-syntax :cl-interpol
+  (:merge :standard)
+  (:dispatch-macro-char #\# #\? #'cl-interpol::interpol-reader))

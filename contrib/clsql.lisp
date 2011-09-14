@@ -1,11 +1,6 @@
-(defpackage cl-syntax-clsql
-  (:nicknames :syntax-clsql)
-  (:use :cl)
-  (:import-from :syntax
-                :defsyntax)
-  (:export :clsql-syntax))
-(in-package cl-syntax-clsql)
+(in-package :cl-user)
 
-(defsyntax clsql-syntax
-  (:macro-character #\[ #'clsql-sys::sql-reader-open)
-  (:macro-character #\] (get-macro-character #\))))
+(syntax:define-package-syntax :clsql
+  (:merge :standard)
+  (:macro-char #\[ #'clsql-sys::sql-reader-open)
+  (:macro-char #\] (cl:get-macro-character #\))))
