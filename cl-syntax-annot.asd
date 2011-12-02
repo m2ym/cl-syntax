@@ -8,5 +8,6 @@
   :version "0.2"
   :author "Tomohiro Matsuyama"
   :license "LLGPL"
+  :description "CL-Syntax Reader Syntax for cl-annot"
   :depends-on (:cl-syntax :cl-annot)
   :components ((:file "contrib/annot")))

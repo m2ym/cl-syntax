@@ -8,5 +8,6 @@
   :version "0.1"
   :author "Tomohiro Matsuyama"
   :license "LLGPL"
+  :description "CL-Syntax Reader Syntax for CLSQL"
   :depends-on (:cl-syntax :clsql)
   :components ((:file "contrib/clsql")))
