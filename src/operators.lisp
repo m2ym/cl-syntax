@@ -28,6 +28,7 @@
                  name))
   (unless (listp name)
     (setq name (list name)))
+  (setq *readtable* (copy-readtable))
   (apply #'merge-readtables-into
          *readtable*
          (mapcar #'find-syntax name))
