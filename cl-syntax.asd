@@ -8,6 +8,7 @@
   :version "0.3"
   :author "Tomohiro Matsuyama"
   :license "LLGPL"
+  :description "Reader Syntax Coventions for Common Lisp and SLIME"
   :depends-on (:trivial-types
                :named-readtables)
   :components ((:module "src"
