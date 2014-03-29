@@ -5,7 +5,9 @@
     (intern *standard-package-syntax-name* package)))
 
 (defmacro defsyntax (name &body options)
-  `(defreadtable ,name ,@options))
+  `(progn
+     (setf (get ',name :options) ',options)
+     (defreadtable ,name ,@options)))
 
 (defmacro define-package-syntax (&body (package . options))
   (unless (typep package 'package-designator)
@@ -22,16 +24,23 @@
          (find-readtable (package-syntax-name name)))
         (t (find-readtable name))))
 
-(defun %use-syntax (name)
+(defun %use-syntax (names)
   (declare (type (or syntax-designator
                      (proper-list syntax-designator))
-                 name))
-  (unless (listp name)
-    (setq name (list name)))
+                 names))
+  (unless (listp names)
+    (setq names (list names)))
   (setq *readtable* (copy-readtable))
-  (apply #'merge-readtables-into
-         *readtable*
-         (mapcar #'find-syntax name))
+  (loop for name in names
+        for syntax = (find-syntax name)
+        for options = (get (package-syntax-name name) :options)
+        if (assoc :fuze (if (consp (car options)) options (cdr options))) do
+          (handler-bind ((named-readtables:reader-macro-conflict
+                            (lambda (_) (declare (ignore _))
+                              (invoke-restart 'continue))))
+             (merge-readtables-into *readtable* syntax) )
+        else do
+          (merge-readtables-into *readtable* syntax) )
   (when (find-package :swank)
     (named-readtables::%frob-swank-readtable-alist *package* *readtable*)))
 
