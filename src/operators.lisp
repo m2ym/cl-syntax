@@ -16,7 +16,7 @@
 (defmacro defsyntax (name &body options)
   `(progn
      (setf (get ',name :options) ',options)
-     (defreadtable ,name ,@options)))
+     (defvar ,name (defreadtable ,name ,@options))))
 
 (defmacro define-package-syntax (&body (package . options))
   (unless (typep package 'package-designator)
